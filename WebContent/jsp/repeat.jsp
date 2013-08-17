@@ -18,7 +18,7 @@
 	<table>
 		<tr>
 			<td>
-				REPEAT TEST {{1+2}}
+				REPEAT TEST
 				<div ng-controller="repeatCtrl">
 					<ul>I have {{friends.length}} friends. They are : 
 						<li ng-repeat="friend in friends">
