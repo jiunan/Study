@@ -79,10 +79,10 @@
 		WHERE 1=1
 		<dynamic>
         	<isNotEmpty property = "userId">
-        		AND USER_ID like '%' + #userId# + '%'
+        		AND USER_ID like '%' || #userId# || '%'
 			</isNotEmpty>
 			<isNotEmpty property = "userNm">
-        		AND USER_NM like '%' + #userN# + '%'
+        		AND USER_NM like '%' || #userN# || '%'
 			</isNotEmpty>
         	<isNotEmpty property = "svcId">
         		AND SVC_ID = #svcId#
@@ -103,10 +103,10 @@
 				WHERE 1=1
 				<dynamic>
 		        	<isNotEmpty property = "userId">
-		        		AND USER_ID like '%' + #userId# + '%'
+		        		AND USER_ID like '%' || #userId# || '%'
 					</isNotEmpty>
 					<isNotEmpty property = "userNm">
-		        		AND USER_NM like '%' + #userN# + '%'
+		        		AND USER_NM like '%' || #userN# || '%'
 					</isNotEmpty>
 		        	<isNotEmpty property = "svcId">
 		        		AND SVC_ID = #svcId#
