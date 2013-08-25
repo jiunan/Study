@@ -8,4 +8,3 @@
 
 	<sqlMap resource="application/common-sqlmap.xml" />
 </sqlMapConfig>
-
