@@ -3,7 +3,7 @@
 
 <sqlMap namespace="common">
 	<!-- [paging] 其捞隆贸府 Header  -->
-    <sql id="pagingHeaderSql">
+<!--     <sql id="pagingHeaderSql">
     	SELECT *
 		  FROM (
 		  		SELECT *
@@ -27,10 +27,10 @@
 		                     		   , X.*
 		              			  FROM (SELECT COUNT (*) OVER () TOTAL_CNT, Z.*
 		                     			  FROM (
-    </sql>
+    </sql> -->
     
     <!-- [paging] 其捞隆贸府 Footer  -->
-    <sql id="pagingFooterSql">
+<!--     <sql id="pagingFooterSql">
     		                          		   ) Z 
 			                   		   ) X    
 			               	   ) Y
@@ -38,5 +38,5 @@
 			     WHERE RNUM &lt;= END_NUM
 			   )V   
 		 WHERE RNUM &gt;= START_NUM
-    </sql>
+    </sql> -->
 </sqlMap>
