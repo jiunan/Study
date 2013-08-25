@@ -20,11 +20,11 @@ public class UserMgtSVC{
 		return commonDao.queryForList( "admin.userMgt.select_list_user" , input );
 	}
 	
-	public List< UserMgtVO > getList( UserMgtVO input, int curPage, int pageSize)	{
+/*	public List< UserMgtVO > getList( UserMgtVO input, int curPage, int pageSize)	{
 		input.setCurPage(curPage);
 		input.setPageSize(pageSize);
 		return commonDao.queryForList( "admin.userMgt.select_list_user_paging" , input );
-	}
+	}*/
 	
 	public UserMgtVO getView( UserMgtVO input )	{
 		return commonDao.queryForObject( "admin.userMgt.select_view_user" , input );

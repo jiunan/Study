@@ -22,13 +22,13 @@
 		<result column="ROLE_NM" property="roleNm" />
 		
 		<!-- 페이징 처리시 사용되는 공통컬럼 -->
-		<result column="PAGE_SIZE" property="pageSize" />
+<!-- 		<result column="PAGE_SIZE" property="pageSize" />
 		<result column="CUR_PAGE" property="curPage" />
 		<result column="RNUM" property="rnum" />
 		<result column="START_NUM" property="startNum" />
 		<result column="END_NUM" property="endNum" />
 		<result column="TOTAL_CNT" property="totalCnt" />
-		<result column="MAX_VIEW_PAGE" property="maxViewPage" />
+		<result column="MAX_VIEW_PAGE" property="maxViewPage" /> -->
 	</resultMap>
 
 	<!-- [user] select 공통 SQL문  -->
@@ -38,9 +38,9 @@
         	  USER_NM,
         	  SVC_ID,
         	  SVC_TGT_ID,
-        	  (SELECT SVC_NM FROM SVC WHERE SVC_ID = A.SVC_ID ) SVC_NM,
+        	  '' SVC_NM,
         	  ROLE_ID,
-        	  (SELECT ROLE_NM FROM ROLE_MGT WHERE ROLE_ID = A.ROLE_ID) ROLE_NM,
+        	  '' ROLE_NM,
         	  MPHON,
         	  OFFICE_TEL_NO,
         	  EMAIL_ADR,
@@ -50,8 +50,10 @@
         	  CHGR_ID,
         	  CHG_DT,
               PWD,
-              ROW_NUMBER() OVER(ORDER BY USER_ID) RNUM	<!-- 페이징 처리를 위한 로우넘버 -->
-         FROM USER_MGT A
+              <!-- ROW_NUMBER() OVER(ORDER BY USER_ID) RNUM	페이징 처리를 위한 로우넘버 -->
+               @RNUM := @RNUM + 1 AS RNUM
+         FROM test.USER_MGT A,
+         			( SELECT @RNUM := 0 ) R
     </sql>
     
     <!-- [user] 단건 조회 -->
@@ -94,7 +96,7 @@
 	<!-- [user] 목록 조회 페이징 -->
     <select id="select_list_user_paging" parameterClass="com.highdev.angularjs.test.vo.UserMgtVO" resultMap="userMgtVo">
     	 <!-- 페이징 SQL Header -->
-    	 <include refid="common.pagingHeaderSql"/>
+    	 <!-- <include refid="common.pagingHeaderSql"/> -->
     	 
 		    	<include refid="userMgtSelect_sql"/>
 		    	 
@@ -115,13 +117,13 @@
 				</dynamic>
 		
 		<!-- 페이징 SQL Footer -->
-		<include refid="common.pagingFooterSql"/>
+		<!-- <include refid="common.pagingFooterSql"/> -->
 			
     </select>
 
  	<!-- [user] 등록  -->
     <insert id="insert_user" parameterClass="com.highdev.angularjs.test.vo.UserMgtVO">
-        INSERT INTO USER_MGT
+        INSERT INTO test.USER_MGT
         (
          USER_ID
        	 ,USER_NM
@@ -161,7 +163,7 @@
 
     <!-- [user] 수정  -->
     <update id="update_user" parameterClass="com.highdev.angularjs.test.vo.UserMgtVO">
-        UPDATE USER_MGT
+        UPDATE test.USER_MGT
       	  SET
       	  <dynamic>
             CHGR_ID    =  #chgrId#
@@ -181,7 +183,7 @@
 
     <!-- [user] 삭제  -->
     <delete id="delete_user" parameterClass="com.highdev.angularjs.test.vo.UserMgtVO">
-        DELETE FROM USER_MGT
+        DELETE FROM test.USER_MGT
         WHERE   USER_ID = #userId#
     </delete>
 </sqlMap>

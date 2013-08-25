@@ -24,14 +24,14 @@ public class UserMgtCTR {
 
 	@RequestMapping("/userMgt")
 	public String getViewName(Model moodel){
-		System.out.println("!!!!!!!!!!!!!!!!!!!");
 		return "admin/userMgt";
 	}
 
 	@RequestMapping("/users")
 	@ResponseBody
-	public List<UserMgtVO> getUserList(UserMgtVO userMgtVO,@RequestParam(required=false) int currentPage, @RequestParam(required=false) int pageSize){
-		return userMgtSVC.getList(userMgtVO, currentPage, pageSize);
+	/*public List<UserMgtVO> getUserList(UserMgtVO userMgtVO,@RequestParam(required=false) int currentPage, @RequestParam(required=false) int pageSize){*/
+	public List<UserMgtVO> getUserList(UserMgtVO userMgtVO){
+		return userMgtSVC.getList(userMgtVO);
 	}
 
 	@RequestMapping(method={RequestMethod.POST},value="/users")
