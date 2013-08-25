@@ -150,9 +150,9 @@
         , #roleId#
         , #pwd#
         , #cretrId#
-        , GETDATE()
+        , now()
         , #chgrId#
-        , GETDATE()
+        , now()
         , #useYn#
 	        <isNotEmpty property="mphon" prepend="," >#mphon#</isNotEmpty>
 	        <isNotEmpty property="officeTelNo" prepend="," >#officeTelNo#</isNotEmpty>
@@ -167,7 +167,7 @@
       	  SET
       	  <dynamic>
             CHGR_ID    =  #chgrId#
-         	,CHG_DT     =  GETDATE()
+         	,CHG_DT     =  now()
              <isNotEmpty property="userNm" prepend="," >USER_NM = #userNm#</isNotEmpty>
              <isNotEmpty property="svcId" prepend="," >SVC_ID = #svcId#</isNotEmpty>
              <isNotEmpty property="svcTgtId" prepend="," >SVC_TGT_ID = #svcTgtId#</isNotEmpty>
